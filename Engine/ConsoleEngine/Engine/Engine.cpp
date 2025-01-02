@@ -1,4 +1,4 @@
-#include "Engine.h"
+ï»¿#include "Engine.h"
 
 #include <iostream>
 #include <Windows.h>
@@ -14,26 +14,26 @@ Engine::~Engine()
 
 void Engine::Run()
 {
-	// ½ÃÀÛ Å¸ÀÓ ½ºÅÆÇÁ
+	// ì‹œì‘ íƒ€ì„ ìŠ¤íƒ¬í”„
 	//unsigned long currentTime = timeGetTime();
 	//unsigned long previousTIme = 0;
 
 	// CPU 
 	LARGE_INTEGER frequency;
-	QueryPerformanceFrequency(&frequency); // CPU°¡ °¡Áö°í ÀÖ´Â hz ¹İÈ¯
+	QueryPerformanceFrequency(&frequency); // CPUê°€ ê°€ì§€ê³  ìˆëŠ” hz ë°˜í™˜
 
-	// ½ÃÀÛ ½Ã°£ ¹× ÀÌÀü ½Ã°£À» À§ÇÑ º¯¼ö
+	// ì‹œì‘ ì‹œê°„ ë° ì´ì „ ì‹œê°„ì„ ìœ„í•œ ë³€ìˆ˜
 	LARGE_INTEGER time;
 	QueryPerformanceCounter(&time);
 
 	// long long == __int64 == int64_t
-	int64_t currentTime = time.QuadPart; // 64bit ÇÑ ¹ø¿¡ ÀúÀå
+	int64_t currentTime = time.QuadPart; // 64bit í•œ ë²ˆì— ì €ì¥
 	int64_t previousTime = 0;
 
-	// ÇÁ·¹ÀÓ Á¦ÇÑ
+	// í”„ë ˆì„ ì œí•œ
 	float targetFrameRate = 60.0f;
 
-	// ÇÑ ÇÁ·¹ÀÓ ½Ã°£ °è»ê
+	// í•œ í”„ë ˆì„ ì‹œê°„ ê³„ì‚°
 	float targetOneFrameTime = 1.0f / targetFrameRate;
 
 	// Game Loop
@@ -44,37 +44,80 @@ void Engine::Run()
 			break;
 		}
 
-		// ÇöÀç ÇÁ·¹ÀÓ ½Ã°£ ÀúÀå
+		// í˜„ì¬ í”„ë ˆì„ ì‹œê°„ ì €ì¥
 		// currentTime = timeGetTime();
 		QueryPerformanceCounter(&time);
 		currentTime = time.QuadPart;
 
-		// ÇÁ·¹ÀÓ ½Ã°£ °è»ê
+		// í”„ë ˆì„ ì‹œê°„ ê³„ì‚°
 		float deltaTime = static_cast<float>(currentTime - previousTime) / 
 			static_cast<float>(frequency.QuadPart);
 
-		// ÇÁ·¹ÀÓ È®ÀÎ
+		// í”„ë ˆì„ í™•ì¸
 		if (deltaTime >= targetOneFrameTime)
 		{
+			// ì…ë ¥ ì²˜ë¦¬ (í˜„ì¬ í‚¤ì˜ ëˆŒë¦¼ ìƒíƒœ í™•ì¸)
 			ProcessInput();
+
 			Update(deltaTime);
 			Draw();
 
-			// ÀÌÀü ÇÁ·¹ÀÓ ½Ã°£ ÀúÀå
+			// í‚¤ ìƒíƒœ ì €ì¥
+			SavePreviousKeyStates();
+
+			// ì´ì „ í”„ë ˆì„ ì‹œê°„ ì €ì¥
 			previousTime = currentTime;
 		}
 	}
 }
 
+bool Engine::GetKey(int key)
+{
+	return keyState[key].isKeyDown;
+}
+
+bool Engine::GetKeyDown(int key)
+{
+	return keyState[key].isKeyDown && keyState[key].wasKeyDown;
+}
+
+bool Engine::GetKeyUp(int key)
+{
+	return !keyState[key].isKeyDown && keyState[key].wasKeyDown;
+}
+
+void Engine::QuitGame()
+{
+	quit = true;
+}
+
 void Engine::ProcessInput()
 {
+	for (int i = 0; i < 255; i++)
+	{
+		keyState[i].isKeyDown = (GetAsyncKeyState(i) & 0x8000) ? true : false;
+	}
 }
 
 void Engine::Update(float deltaTime)
 {
+	// ESCí‚¤ë¡œ ê²Œì„ ì¢…ë£Œ
+	if (GetKeyDown(VK_ESCAPE))
+	{
+		QuitGame();
+	}
+
 	std::cout << "DeltaTime: " << deltaTime << ", Fps: " << (1.0f / deltaTime) << '\n';
 }
 
 void Engine::Draw()
 {
+}
+
+void Engine::SavePreviousKeyStates()
+{
+	for (int i = 0; i < 255; i++)
+	{
+		keyState[i].wasKeyDown = keyState[i].isKeyDown;
+	}
 }
