@@ -15,10 +15,12 @@ Engine::~Engine()
 void Engine::Run()
 {
 	// 시작 타임 스탬프
+	// timeGetTime 함수는 ms(1/1000초) 단위
 	//unsigned long currentTime = timeGetTime();
 	//unsigned long previousTIme = 0;
 
-	// CPU 
+	// CPU 시계 사용
+	// 시스템 시계 -> 고해상도 카운터
 	LARGE_INTEGER frequency;
 	QueryPerformanceFrequency(&frequency); // CPU가 가지고 있는 hz 반환
 
@@ -49,7 +51,7 @@ void Engine::Run()
 		QueryPerformanceCounter(&time);
 		currentTime = time.QuadPart;
 
-		// 프레임 시간 계산
+		// 프레임 시간 계산 (1000만으로 나눠서 초를 구함)
 		float deltaTime = static_cast<float>(currentTime - previousTime) / 
 			static_cast<float>(frequency.QuadPart);
 
@@ -95,6 +97,7 @@ void Engine::ProcessInput()
 {
 	for (int i = 0; i < 255; i++)
 	{
+		// (GetAsyncKeyState(i) & 0x8000) 현재 프레임에 눌렸는지 저장
 		keyState[i].isKeyDown = (GetAsyncKeyState(i) & 0x8000) ? true : false;
 	}
 }
