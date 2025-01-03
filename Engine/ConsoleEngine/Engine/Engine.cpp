@@ -3,9 +3,14 @@
 #include <iostream>
 #include <Windows.h>
 
+// 스태틱 변수 초기화
+Engine* Engine::Instance = nullptr;
+
 Engine::Engine()
 	: quit(false)
 {
+	// 싱글톤 객체 설정
+	Instance = this;
 }
 
 Engine::~Engine()
@@ -91,6 +96,11 @@ bool Engine::GetKeyUp(int key)
 void Engine::QuitGame()
 {
 	quit = true;
+}
+
+Engine& Engine::Get()
+{
+	return *Instance;
 }
 
 void Engine::ProcessInput()

@@ -27,6 +27,9 @@ public:
 	// 엔진 종료 함수
 	void QuitGame();
 
+	// 싱글톤 객체 접근 함수
+	static Engine& Get();
+
 protected:
 	void ProcessInput();				// 입력
 	void Update(float deltaTime);		// Tick
@@ -42,4 +45,8 @@ private:
 
 	// 키 상태를 저장하는 배열
 	KeyState keyState[255];
+
+	// 싱글톤 구현을 위한 전역 변수 선언
+	static Engine* Instance;
 };
+
