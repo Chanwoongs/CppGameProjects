@@ -17,6 +17,10 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+	if (mainLevel != nullptr)
+	{
+		delete mainLevel;
+	}
 }
 
 void Engine::Run()
