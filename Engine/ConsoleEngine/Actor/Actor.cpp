@@ -1,3 +1,5 @@
+#include "PrecompiledHeader.h"
+
 #include "Actor.h"
 
 Actor::Actor()
