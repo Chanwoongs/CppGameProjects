@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 
-// ·¹º§ÀÇ ±âº» ¹°Ã¼
-class Actor
+// ë ˆë²¨ì˜ ê¸°ë³¸ ë¬¼ì²´
+class __declspec(dllexport) Actor
 {
 public:
 	Actor();
 	virtual ~Actor();
 
-	// ·çÇÁ Ã³¸® ÇÔ¼ö
+	// ë£¨í”„ ì²˜ë¦¬ í•¨ìˆ˜
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
 protected:
-	// ID / ÀÌ¸§ °ª
-	// È°¼ºÈ­ »óÅÂÀÎÁö¸¦ ³ªÅ¸³»´Â º¯¼ö
+	// ID / ì´ë¦„ ê°’
+	// í™œì„±í™” ìƒíƒœì¸ì§€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜
 	bool isActive;
 
-	// ¾×ÅÍÀÇ Á¦°Å ¿äÃ»ÀÌ µÆ´ÂÁö ¿©ºÎ¸¦ ³ªÅ¸³»´Â º¯¼ö
+	// ì•¡í„°ì˜ ì œê±° ìš”ì²­ì´ ëëŠ”ì§€ ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜
 	bool isExpired;
 };
