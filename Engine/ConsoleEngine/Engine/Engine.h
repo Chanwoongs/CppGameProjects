@@ -1,5 +1,8 @@
 ﻿#pragma once
 
+class Level;
+class Actor;
+
 // 입력 처리를 위한 구조체
 struct KeyState
 {
@@ -18,6 +21,9 @@ public:
 
 	// 엔진 실행 함수
 	void Run();
+
+	// 레벨 추가 함수
+	void LoadLevel(Level* newLevel);
 
 	// 입력 관련 함수
 	bool GetKey(int key);
@@ -39,7 +45,6 @@ protected:
 	void SavePreviousKeyStates();
 
 private:
-
 	// 종료할 때 설정할 변수
 	bool quit;
 
@@ -48,5 +53,7 @@ private:
 
 	// 싱글톤 구현을 위한 전역 변수 선언
 	static Engine* Instance;
-};
 
+	// 메인 레벨 변수
+	Level* mainLevel;
+};
