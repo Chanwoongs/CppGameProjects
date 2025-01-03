@@ -1,9 +1,11 @@
 ﻿#pragma once
 
+#include "PrecompiledHeader.h"
+
 // 전방 선언
 class Actor;
 
-class __declspec(dllimport) Level
+class ENGINE_API Level
 {
 public:
 	Level();
