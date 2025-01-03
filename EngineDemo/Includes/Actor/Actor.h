@@ -1,7 +1,7 @@
 #pragma once
 
 // 레벨의 기본 물체
-class Actor
+class __declspec(dllimport) Actor
 {
 public:
 	Actor();
