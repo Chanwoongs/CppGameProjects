@@ -3,7 +3,7 @@
 // 전방 선언
 class Actor;
 
-class __declspec(dllexport) Level
+class ENGINE_API Level
 {
 public:
 	Level();

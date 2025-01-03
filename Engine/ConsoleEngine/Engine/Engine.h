@@ -13,7 +13,7 @@ struct KeyState
 };
 
 // 엔진 클래스
-class __declspec(dllexport) Engine
+class ENGINE_API Engine
 {
 public:
 	Engine();
