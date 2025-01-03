@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-// Àü¹æ ¼±¾ğ
+// ì „ë°© ì„ ì–¸
 class Actor;
 
 class Level
@@ -12,16 +12,16 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-	// ¾×ÅÍ Ãß°¡ ÇÔ¼ö
+	// ì•¡í„° ì¶”ê°€ í•¨ìˆ˜
 	void AddActor(Actor* newActor);
 
 protected:
-	// °ÔÀÓ °ø°£¿¡ ¹èÄ¡µÇ´Â ¹°Ã¼(Actor) ¹è¿­.
+	// ê²Œì„ ê³µê°„ì— ë°°ì¹˜ë˜ëŠ” ë¬¼ì²´(Actor) ë°°ì—´.
 	Actor** actors;
 
-	// ÀúÀåÇÒ ¼ö ÀÖ´Â °ø°£ÀÇ Å©±â
+	// ì €ì¥í•  ìˆ˜ ìˆëŠ” ê³µê°„ì˜ í¬ê¸°
 	int capacity;
 
-	// ¾×ÅÍÀÇ ¼ö
+	// ì•¡í„°ì˜ ìˆ˜
 	int count;
 };

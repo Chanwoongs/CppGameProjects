@@ -1,4 +1,4 @@
-#include "Level.h"
+ï»¿#include "Level.h"
 //#include "../Actor/Actor.h"
 #include "Actor/Actor.h"
 
@@ -7,16 +7,16 @@
 Level::Level()
 	: actors(nullptr), capacity(4), count(0)
 {
-	// µ¿Àû ¹è¿­ »ı¼º
+	// ë™ì  ë°°ì—´ ìƒì„±
 	actors = new Actor*[capacity];
 
-	// °ø°£ÀÇ Æ÷ÀÎÅÍµé ÃÊ±âÈ­
+	// ê³µê°„ì˜ í¬ì¸í„°ë“¤ ì´ˆê¸°í™”
 	memset(actors, 0, sizeof(size_t) * capacity);
 }
 
 Level::~Level()
 {
-	// ¸Ş¸ğ¸® ÇØÁ¦
+	// ë©”ëª¨ë¦¬ í•´ì œ
 	for (int i = 0; i < count; i++)
 	{
 		delete actors[i];
@@ -26,39 +26,50 @@ Level::~Level()
 
 void Level::Update(float deltaTime)
 {
+	// ë ˆë²¨ì— í¬í•¨ëœ ì•¡í„°ë¥¼ ìˆœíšŒí•˜ë©´ì„œ Update í•¨ìˆ˜ í˜¸ì¶œ
+	for (int i = 0; i < count; i++)
+	{
+		actors[i]->Update(deltaTime);
+	}
 }
 
 void Level::Draw()
-{
+{	
+	// ë ˆë²¨ì— í¬í•¨ëœ ì•¡í„°ë¥¼ ìˆœíšŒí•˜ë©´ì„œ Draw í•¨ìˆ˜ í˜¸ì¶œ
+	for (int i = 0; i < count; i++)
+	{
+		actors[i]->Draw();
+	}
 }
+
 
 void Level::AddActor(Actor* newActor)
 {
-	// ÇöÀç ÇÒ´çµÈ °ø°£ÀÌ ÃæºĞÇÑÁö È®ÀÎ
+	// í˜„ì¬ í• ë‹¹ëœ ê³µê°„ì´ ì¶©ë¶„í•œì§€ í™•ì¸
 	if (count == capacity)
 	{
-		// °ø°£ Ãß°¡ ÇÒ´ç
+		// ê³µê°„ ì¶”ê°€ í• ë‹¹
 		int newCapacity = capacity * 2;
 
-		// ÀÓ½Ã °ø°£
+		// ì„ì‹œ ê³µê°„
 		Actor** temp = new Actor*[newCapacity];
 
-		// ±âÁ¸ °ª º¹»ç
+		// ê¸°ì¡´ ê°’ ë³µì‚¬
 		memcpy(temp, actors, sizeof(size_t) * capacity);
 
-		// ±âÁ¸ °ª »èÁ¦
+		// ê¸°ì¡´ ê°’ ì‚­ì œ
 		delete[] actors;
 
-		// ¹è¿­ ±³Ã¼
+		// ë°°ì—´ êµì²´
 		actors = temp;
 
-		// Å©±â º¯°æ
+		// í¬ê¸° ë³€ê²½
 		capacity = newCapacity;
 
-		// temp´Â ·ÎÄÃ º¯¼öÀÌ±â ¶§¹®¿¡ ÀÚµ¿À¸·Î »ç¶óÁü
+		// tempëŠ” ë¡œì»¬ ë³€ìˆ˜ì´ê¸° ë•Œë¬¸ì— ìë™ìœ¼ë¡œ ì‚¬ë¼ì§
 	}
 
-	// ¾×ÅÍ Ãß°¡
+	// ì•¡í„° ì¶”ê°€
 	actors[count] = newActor;
 	++count;
 }
