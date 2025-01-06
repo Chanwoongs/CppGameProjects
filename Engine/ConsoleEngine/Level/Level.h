@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "Core.h"
+
 // 전방 선언
 class Actor;
 

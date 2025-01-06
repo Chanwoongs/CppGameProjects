@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "Core.h"
+
 class Level;
 class Actor;
 

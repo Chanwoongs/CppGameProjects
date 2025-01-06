@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "Core.h"
+
 // 레벨의 기본 물체
 class ENGINE_API Actor
 {
