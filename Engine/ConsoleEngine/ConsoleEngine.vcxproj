@@ -103,6 +103,13 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)\Includes\ /e /y</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy $(OutDir)\ConsoleEngine.dll $(SolutionDir)\Lib\ /e /y
+xcopy $(OutDir)\ConsoleEngine.lib $(SolutionDir)\Lib\ /e /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -125,6 +132,13 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)\Includes\ /e /y</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy $(OutDir)\ConsoleEngine.dll $(SolutionDir)\Lib\ /e /y
+xcopy $(OutDir)\ConsoleEngine.lib $(SolutionDir)\Lib\ /e /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -143,6 +157,13 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)\Includes\ /e /y</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy $(OutDir)\ConsoleEngine.dll $(SolutionDir)\Lib\ /e /y
+xcopy $(OutDir)\ConsoleEngine.lib $(SolutionDir)\Lib\ /e /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -165,6 +186,13 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)\Includes\ /e /y</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy $(OutDir)\ConsoleEngine.dll $(SolutionDir)\Lib\ /e /y
+xcopy $(OutDir)\ConsoleEngine.lib $(SolutionDir)\Lib\ /e /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
