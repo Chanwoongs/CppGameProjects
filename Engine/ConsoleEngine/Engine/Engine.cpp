@@ -15,6 +15,9 @@ Engine::Engine()
 {
 	// 싱글톤 객체 설정
 	Instance = this;
+
+    // 기본 타겟 프레임 속도 설정
+    SetTargetFrameRate(60.0f);
 }
 
 Engine::~Engine()
@@ -44,12 +47,6 @@ void Engine::Run()
 	// long long == __int64 == int64_t
 	int64_t currentTime = time.QuadPart; // 64bit 한 번에 저장
 	int64_t previousTime = 0;
-
-	// 프레임 제한
-	float targetFrameRate = 60.0f;
-
-	// 한 프레임 시간 계산
-	float targetOneFrameTime = 1.0f / targetFrameRate;
 
 	// Game Loop
 	while (true)
@@ -104,6 +101,13 @@ void Engine::SetCursorPosition(int x, int y)
     static HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD coord = { static_cast<short>(x), static_cast<short>(y) };
     SetConsoleCursorPosition(handle, coord);
+}
+
+void Engine::SetTargetFrameRate(float targetFrameRate)
+{
+    this->targetframeRate = targetFrameRate;
+
+    targetOneFrameTime = 1.0f / targetFrameRate;
 }
 
 bool Engine::GetKey(int key)
