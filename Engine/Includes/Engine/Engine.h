@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Core.h"
+#include "Math/Vector2.h"
 
 class Level;
 class Actor;
@@ -26,6 +27,10 @@ public:
 
 	// 레벨 추가 함수
 	void LoadLevel(Level* newLevel);
+
+    // 화면 좌표 관련 함수
+    void SetCursorPosition(const Vector2& position);
+    void SetCursorPosition(int x, int y);
 
 	// 입력 관련 함수
 	bool GetKey(int key);
