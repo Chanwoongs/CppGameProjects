@@ -1,7 +1,10 @@
 ﻿#pragma once
 
+#pragma warning (disable : 4251)
+
 #include <iostream>
 
+// template에는 dllexport를 쓰는게 아니다.
 template <typename T>
 class List
 {

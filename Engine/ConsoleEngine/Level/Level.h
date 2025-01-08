@@ -23,6 +23,6 @@ public:
 	void AddActor(Actor* newActor);
 
 protected:
-    //// 게임 공간에 배치되는 물체(Actor) 배열.
+    // 게임 공간에 배치되는 물체(Actor) 배열.
     List<Actor*> actors;
 };
