@@ -1,10 +1,12 @@
 ﻿#include "TestLevel.h"
 #include "Engine/Engine.h"
+#include "Actor/Player.h"
 
 #include "Core.h"
 
 TestLevel::TestLevel()
 {
+    AddActor(new Player());
 }
 
 TestLevel::~TestLevel()
