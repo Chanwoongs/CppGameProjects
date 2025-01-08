@@ -167,12 +167,14 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\Game.h" />
     <ClCompile Include="Level\TestLevel.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Level\TestLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
