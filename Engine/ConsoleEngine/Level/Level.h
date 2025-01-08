@@ -1,12 +1,17 @@
 ﻿#pragma once
 
 #include "Core.h"
+#include "RTTI.h"
+#include "Container/List.h"
 
 // 전방 선언
 class Actor;
 
-class ENGINE_API Level
+class ENGINE_API Level : public RTTI
 {
+    // RTTI 정의
+    RTTI_DECLARATIONS(Level, RTTI)
+
 public:
 	Level();
 	virtual ~Level();

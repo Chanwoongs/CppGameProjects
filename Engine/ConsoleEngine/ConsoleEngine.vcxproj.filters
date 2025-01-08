@@ -50,5 +50,8 @@
     <ClInclude Include="RTTI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Container\List.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
