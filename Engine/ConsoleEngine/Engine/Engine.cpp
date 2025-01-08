@@ -94,6 +94,18 @@ void Engine::LoadLevel(Level* newLevel)
 	mainLevel = newLevel;
 }
 
+void Engine::SetCursorPosition(const Vector2& position)
+{
+    SetCursorPosition(position.x, position.y);
+}
+
+void Engine::SetCursorPosition(int x, int y)
+{
+    static HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coord = { static_cast<short>(x), static_cast<short>(y) };
+    SetConsoleCursorPosition(handle, coord);
+}
+
 bool Engine::GetKey(int key)
 {
 	return keyState[key].isKeyDown;
