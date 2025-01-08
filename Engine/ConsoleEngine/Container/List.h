@@ -71,6 +71,16 @@ public:
         return data[index];
     }
 
+	T* begin() const
+	{
+		return data;
+	}
+	
+	T* end() const
+	{
+		return data + size;
+	}
+
 private:
     void ReAllocate(int newCapacity)
     {
