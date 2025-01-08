@@ -91,6 +91,33 @@ void Engine::LoadLevel(Level* newLevel)
 	mainLevel = newLevel;
 }
 
+void Engine::SetCursorType(CursorType cursorType)
+{
+    // 1. 커서 설정 구조체 설정
+    CONSOLE_CURSOR_INFO info = { };
+
+    switch (cursorType)
+    {
+    case CursorType::NoCursor:
+        info.dwSize = 1; // 너비를 0으로 하면 무시한다.
+        info.bVisible = FALSE;
+        break;
+
+    case CursorType::SolidCursor:
+        info.dwSize = 100;
+        info.bVisible = TRUE;
+        break;
+
+    case CursorType::NormalCursor:
+        info.dwSize = 20;
+        info.bVisible = TRUE;
+        break;
+    }
+
+    // 2. 설정
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
+}
+
 void Engine::SetCursorPosition(const Vector2& position)
 {
     SetCursorPosition(position.x, position.y);

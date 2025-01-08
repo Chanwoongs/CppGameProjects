@@ -15,6 +15,13 @@ struct KeyState
 	bool wasKeyDown = false;
 };
 
+enum class CursorType
+{
+    NoCursor,
+    SolidCursor,
+    NormalCursor
+};
+
 // 엔진 클래스
 class ENGINE_API Engine
 {
@@ -29,6 +36,7 @@ public:
 	void LoadLevel(Level* newLevel);
 
     // 화면 좌표 관련 함수
+    void SetCursorType(CursorType cursorType);
     void SetCursorPosition(const Vector2& position);
     void SetCursorPosition(int x, int y);
 
