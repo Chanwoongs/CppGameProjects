@@ -18,7 +18,7 @@ public:
 
 public:
     // x좌표, y좌표
-    int x = 0.0f;
-    int y = 0.0f;
+    int x = 0;
+    int y = 0;
 
 };
