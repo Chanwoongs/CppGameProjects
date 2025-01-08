@@ -198,6 +198,7 @@ xcopy $(OutDir)\ConsoleEngine.lib $(SolutionDir)\Lib\ /e /y</Command>
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Level\Level.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="PrecompiledHeader\PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -212,6 +213,7 @@ xcopy $(OutDir)\ConsoleEngine.lib $(SolutionDir)\Lib\ /e /y</Command>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Level\Level.h" />
+    <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="PrecompiledHeader\PrecompiledHeader.h" />
     <ClInclude Include="RTTI.h" />
   </ItemGroup>
