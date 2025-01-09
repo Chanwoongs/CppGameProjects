@@ -91,6 +91,14 @@ void Engine::LoadLevel(Level* newLevel)
 	mainLevel = newLevel;
 }
 
+void Engine::AddActor(Actor* newActor)
+{
+}
+
+void Engine::DestroyActor(Actor* targetActor)
+{
+}
+
 void Engine::SetCursorType(CursorType cursorType)
 {
     // 1. 커서 설정 구조체 설정
@@ -180,8 +188,27 @@ void Engine::Update(float deltaTime)
 	}
 }
 
+void Engine::Clear()
+{
+    // 화면의 (0, 0)으로 이동.
+    SetCursorPosition(0, 0);
+
+    // 화면 지우기.
+    int height = 25;
+    for (int i = 0; i < height; i++)
+    {
+        Log("                              \n");
+    }
+
+    // 화면의 (0, 0)으로 이동.
+    SetCursorPosition(0, 0);
+}
+
 void Engine::Draw()
 {
+    // 화면 지우기
+    Clear();
+
 	// 레벨 그리기
 	if (mainLevel != nullptr)
 	{
