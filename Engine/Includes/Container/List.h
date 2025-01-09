@@ -52,10 +52,14 @@ public:
             __debugbreak();
         }
 
+        // 삭제한 데이터의 인데스 다음 위치를 한칸 앞으로 모두 이동.
         for (int i = index; i < size - 1; i++)
         {
             data[i] = std::move(data[i + 1]);
         }
+
+        // 삭제 후 크기 줄이기.
+        --size;
     }
 
     int Size() const

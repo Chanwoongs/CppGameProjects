@@ -22,6 +22,9 @@ public:
 	// 액터 추가 함수
 	void AddActor(Actor* newActor);
 
+    // 삭제 요청이 된 액터를 정리하는 함수
+    void DestroyActor();
+
 protected:
     // 게임 공간에 배치되는 물체(Actor) 배열.
     List<Actor*> actors;

@@ -38,3 +38,16 @@ void Level::AddActor(Actor* newActor)
 {
     actors.PushBack(newActor);
 }
+
+void Level::DestroyActor()
+{
+    for (int i = 0; i < actors.Size(); i++)
+    {
+        if (actors[i]->isExpired)
+        {
+            delete actors[i];
+            actors[i] = nullptr;
+            actors.Erase(i);
+;       }
+    }
+}
