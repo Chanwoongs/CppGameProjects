@@ -6,6 +6,7 @@
 #include <Windows.h>
 
 #include "Level/Level.h"
+#include "Actor/Actor.h"
 
 // 스태틱 변수 초기화
 Engine* Engine::Instance = nullptr;
@@ -66,19 +67,32 @@ void Engine::Run()
 			static_cast<float>(frequency.QuadPart);
 
 		// 프레임 확인
-		if (deltaTime >= targetOneFrameTime)
-		{
-			// 입력 처리 (현재 키의 눌림 상태 확인)
-			ProcessInput();
+        if (deltaTime >= targetOneFrameTime)
+        {
+            // 입력 처리 (현재 키의 눌림 상태 확인)
+            ProcessInput();
 
-			Update(deltaTime);
-			Draw();
+            // 업데이트 가능한 상태에서만 프레임 업데이트 처리
+            if (shouldUpdate)
+            {
+                Update(deltaTime);
+                Draw();
+            }
 
 			// 키 상태 저장
 			SavePreviousKeyStates();
 
 			// 이전 프레임 시간 저장
 			previousTime = currentTime;
+
+            // 액터 정리 (삭제 요청된 액터들 정리)
+            if (mainLevel)
+            {
+                mainLevel->DestroyActor();
+            }
+
+            // 프레임 활성화
+            shouldUpdate = true;
 		}
 	}
 }
@@ -93,10 +107,25 @@ void Engine::LoadLevel(Level* newLevel)
 
 void Engine::AddActor(Actor* newActor)
 {
+    // 예외 처리
+    if (mainLevel == nullptr)
+    {
+        return;
+    }
+
+    shouldUpdate = false;
+    mainLevel->AddActor(newActor);
 }
 
 void Engine::DestroyActor(Actor* targetActor)
 {
+    if (mainLevel == nullptr)
+    {
+        return;
+    }
+
+    shouldUpdate = false;
+    targetActor->Destroy();
 }
 
 void Engine::SetCursorType(CursorType cursorType)

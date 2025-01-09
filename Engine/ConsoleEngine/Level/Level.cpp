@@ -21,6 +21,10 @@ void Level::Update(float deltaTime)
 	// 레벨에 포함된 액터를 순회하면서 Update 함수 호출
     for (Actor* actor : actors)
     {
+        if (!actor->isActive || actor->isExpired)
+        {
+            continue;
+        }
         actor->Update(deltaTime);
     }
 }
