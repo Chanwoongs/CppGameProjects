@@ -44,6 +44,20 @@ public:
         size++;
     }
 
+    void Erase(int index)
+    {
+        // 예외 처리.
+        if (index < 0 || index >= size)
+        {
+            __debugbreak();
+        }
+
+        for (int i = index; i < size - 1; i++)
+        {
+            data[i] = std::move(data[i + 1]);
+        }
+    }
+
     int Size() const
     {
         return size;
