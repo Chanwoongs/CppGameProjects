@@ -45,13 +45,14 @@ void Level::AddActor(Actor* newActor)
 
 void Level::DestroyActor()
 {
-    for (int i = 0; i < actors.Size(); i++)
+    for (int i = 0; i < actors.Size();)
     {
         if (actors[i]->isExpired)
         {
             delete actors[i];
             actors[i] = nullptr;
             actors.Erase(i);
-;       }
+        }
+        ++i;
     }
 }
