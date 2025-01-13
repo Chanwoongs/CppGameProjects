@@ -30,7 +30,8 @@ private:
 
     // 화면에 보여줄 문자열 값.
     char* string = nullptr;
-    
+    char* tempString = nullptr;
+
     // 문자열 길이
     int length = 20;
 
