@@ -6,7 +6,7 @@
 
 TestLevel::TestLevel()
 {
-    AddActor(new Player());
+    AddActor(new Player("'..'<A>'..'"));
 }
 
 TestLevel::~TestLevel()

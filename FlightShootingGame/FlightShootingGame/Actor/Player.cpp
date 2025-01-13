@@ -2,9 +2,10 @@
 #include "Engine/Engine.h"
 #include "Math/Vector2.h"
 
-Player::Player(char image)
+Player::Player(const char* image)
     : Super(image)
 {
+    position = Vector2(0, 18);
 }
 
 void Player::Update(float deltaTime)
@@ -30,34 +31,9 @@ void Player::Update(float deltaTime)
         // 새 위치 계산
         Vector2 newPosition = position;
         ++newPosition.x;
-        if (newPosition.x > 40)
+        if (newPosition.x > 29)
         {
-            newPosition.x = 40;
-        }
-
-        SetPosition(newPosition);
-    }
-    if (Engine::Get().GetKey(VK_UP))
-    {
-        // 새 위치 계산
-        Vector2 newPosition = position;
-        --newPosition.y;
-        if (newPosition.y < 0)
-        {
-            newPosition.y = 0;
-        }
-
-        SetPosition(newPosition);
-    }
-    if (Engine::Get().GetKey(VK_DOWN))
-    {
-        // 새 위치 계산
-        Vector2 newPosition = position;
-
-        ++newPosition.y;
-        if (newPosition.y > 25)
-        {
-            newPosition.y = 25;
+            newPosition.x = 29;
         }
 
         SetPosition(newPosition);
