@@ -12,7 +12,7 @@
 Engine* Engine::Instance = nullptr;
 
 Engine::Engine()
-    : quit(false), mainLevel(nullptr), screenSize(40, 25)
+    : quit(false), mainLevel(nullptr), screenSize(80, 25)
 {
 	// 싱글톤 객체 설정
 	Instance = this;
@@ -55,6 +55,8 @@ Engine::~Engine()
 	{
 		delete mainLevel;
 	}
+
+    delete[] emptyStringBuffer;
 }
 
 void Engine::Run()
