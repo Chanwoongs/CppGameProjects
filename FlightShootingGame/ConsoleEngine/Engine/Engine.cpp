@@ -14,6 +14,9 @@ Engine* Engine::Instance = nullptr;
 Engine::Engine()
     : quit(false), mainLevel(nullptr), screenSize(80, 25)
 {
+    // 랜덤 시드 설정
+    srand((unsigned int)time(nullptr));
+
 	// 싱글톤 객체 설정
 	Instance = this;
 
@@ -212,7 +215,7 @@ bool Engine::GetKey(int key)
 
 bool Engine::GetKeyDown(int key)
 {
-	return keyState[key].isKeyDown && keyState[key].wasKeyDown;
+	return keyState[key].isKeyDown && !keyState[key].wasKeyDown;
 }
 
 bool Engine::GetKeyUp(int key)
