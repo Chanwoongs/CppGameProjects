@@ -80,7 +80,7 @@ void Engine::Run()
 
 	// long long == __int64 == int64_t
 	int64_t currentTime = time.QuadPart; // 64bit 한 번에 저장
-	int64_t previousTime = 0;
+	int64_t previousTime = currentTime;
 
 	// Game Loop
 	while (true)
