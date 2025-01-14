@@ -38,7 +38,7 @@ public:
 
     void PushBack(T&& value)
     {
-        if (size <= capacity)
+        if (size == capacity)
         {
             ReAllocate(capacity * 2);
         }
@@ -55,7 +55,7 @@ public:
             __debugbreak();
         }
 
-        // 삭제한 데이터의 인데스 다음 위치를 한칸 앞으로 모두 이동.
+        // 삭제한 데이터의 인덱스 다음 위치를 한칸 앞으로 모두 이동.
         for (int i = index; i < size - 1; i++)
         {
             data[i] = std::move(data[i + 1]);
