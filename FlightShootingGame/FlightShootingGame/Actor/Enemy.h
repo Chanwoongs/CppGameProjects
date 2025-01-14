@@ -4,6 +4,13 @@
 
 class Enemy : public DrawableActor
 {
+    enum class Direction
+    {
+        None = -1,
+        Left,
+        Right
+    };
+
     RTTI_DECLARATIONS(Enemy, DrawableActor)
 
 public:
@@ -14,6 +21,9 @@ public:
     virtual void Update(float deltaTime);
 
 private:
+
+    // 이동 방향
+    Direction direction = Direction::None;
 
     //  좌우 이동에 필요한 변수
     float xPosition = 0.0f;
