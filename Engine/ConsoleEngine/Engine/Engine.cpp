@@ -182,7 +182,7 @@ bool Engine::GetKey(int key)
 
 bool Engine::GetKeyDown(int key)
 {
-	return keyState[key].isKeyDown && keyState[key].wasKeyDown;
+	return keyState[key].isKeyDown && !keyState[key].wasKeyDown;
 }
 
 bool Engine::GetKeyUp(int key)
