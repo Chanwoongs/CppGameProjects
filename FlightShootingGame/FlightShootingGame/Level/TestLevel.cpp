@@ -18,6 +18,15 @@ void TestLevel::Update(float deltaTime)
 {
 	Super::Update(deltaTime);
 
+    // 예외 처리
+    // 플레이어가 안나왔던 이유
+    // 처음에 몇 프레임은 너무 크기 때문에 안정화가 필요하다
+    // 아래에서 delatTime이 1000만이 나와서 이상했다.
+    if (deltaTime > 1.0f)
+    {
+        return;
+    }
+
 	if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	{
 		Engine::Get().QuitGame();

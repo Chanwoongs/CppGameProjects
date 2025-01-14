@@ -10,10 +10,12 @@ Enemy::Enemy(const char* image, int yPosition)
 
 void Enemy::Update(float deltaTime)
 {
+    Super::Update(deltaTime);
+
     xPosition += speed * deltaTime;
     position.x = (int)xPosition;
 
-    if (xPosition > Engine::Get().ScreenSize().x)
+    if (xPosition > Engine::Get().ScreenSize().x - width)
     {
         Destroy();
         return;
