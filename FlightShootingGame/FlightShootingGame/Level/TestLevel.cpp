@@ -7,6 +7,20 @@
 
 #include "windows.h"
 
+// 적 캐릭터 종류
+static const char* enemyType[]
+{
+    "^_^",
+    "*_*",
+    "@_@",
+    ";(^);",
+    "zZTZz",
+    "oO&Oo",
+    "<=-=>",
+    ")~O~(",
+    "[[0]]"
+};
+
 TestLevel::TestLevel()
 {
     AddActor(new Player("_[..'<A>'..]_"));
@@ -38,8 +52,8 @@ void TestLevel::Update(float deltaTime)
     SetColor(Color::Green);
     Engine::Get().SetCursorPosition(0, Engine::Get().ScreenSize().y + 1);
     Log("Score: %d", score);
-
     SetColor(Color::White);
+
     SpawnActor(deltaTime);
 
     //플레이어 탄약과 적의 충돌 처리
@@ -65,8 +79,11 @@ void TestLevel::SpawnActor(float deltaTime)
     elapsedTime = 0.0f;
     spawnTime = RandomPercent(1.0f, 3.0f);
 
+    static int length = sizeof(enemyType) / sizeof(enemyType[0]);
+    int index = Random(0, length - 1);
+
     // 적 생성
-    AddActor(new Enemy("^_^", Random(1, 10)));
+    AddActor(new Enemy(enemyType[index], Random(1, 10)));
 }
 
 void TestLevel::ProcessCollisionPlayerBulletAndEnemy()
@@ -135,13 +152,13 @@ void TestLevel::ProcessCollisionEnemyBulletAndPlayer()
     // 레벨에 배치된 액터를 순회하면서 리스트 채우기
     for (Actor* actor : actors)
     {
-        // 형변환 후 확인해서 리스트 채우기
-        Player* temp = actor->As<Player>();
-        if (temp)
+        // 플레이어 검색
+        if (!player)
         {
-            player = temp;
+            player = actor->As<Player>();
             continue;
         }
+
         EnemyBullet* bullet = actor->As<EnemyBullet>();
         if (bullet)
         {
@@ -162,6 +179,20 @@ void TestLevel::ProcessCollisionEnemyBulletAndPlayer()
         // 충돌 처리
         if (player->Intersect(*bullet))
         {
+            player->Destroy();
+
+            int y = Engine::Get().ScreenSize().y;
+            Engine::Get().SetCursorPosition(player->Position().x - player->Width() / 2, y - 1);
+            Log(" . ");
+
+            Engine::Get().SetCursorPosition(player->Position().x - player->Width() / 2, y);
+            Log("-[.:V:.]-");
+
+            Engine::Get().SetCursorPosition(player->Position().x - player->Width() / 2, y + 1);
+            Log("GameOver!\n");
+
+            Sleep(2000);
+
             Engine::Get().QuitGame();
         }
     }

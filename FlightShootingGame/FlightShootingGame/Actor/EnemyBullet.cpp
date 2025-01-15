@@ -19,7 +19,7 @@ void EnemyBullet::Update(float deltaTime)
     position.y = (int)yPosition;
 
     // 화면 벗어나면 제거
-    if (yPosition > Engine::Get().ScreenSize().y)
+    if (yPosition >= Engine::Get().ScreenSize().y)
     {
         Destroy();
     }
