@@ -18,4 +18,26 @@ void Player::Update(float deltaTime)
     {
         Engine::Get().QuitGame();
     }
+
+    // 상하좌우
+    if (Engine::Get().GetKeyDown(VK_LEFT))
+    {
+        position.x -= 1;
+        position.x = position.x < 0 ? 0 : position.x;
+    }   
+    if (Engine::Get().GetKeyDown(VK_RIGHT))
+    {
+        position.x += 1;
+        position.x = position.x >= Engine::Get().ScreenSize().x ? Engine::Get().ScreenSize().x : position.x;
+    }
+    if (Engine::Get().GetKeyDown(VK_UP))
+    {
+        position.y -= 1;
+        position.y = position.y < 0 ? 0 : position.y;
+    }
+    if (Engine::Get().GetKeyDown(VK_DOWN))
+    {
+        position.y += 1;
+        position.y = position.y >= Engine::Get().ScreenSize().y ? Engine::Get().ScreenSize().y : position.y;
+    }
 }
