@@ -7,5 +7,5 @@ Wall::Wall(const Vector2& position)
     this->position = position;
 
     // Set Color
-    color = Color::White;
+    color = Color::Green;
 }

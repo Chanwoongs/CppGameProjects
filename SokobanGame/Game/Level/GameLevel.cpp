@@ -3,6 +3,9 @@
 #include "Engine/Engine.h"
 #include "Actor/Wall.h"
 #include "Actor/Ground.h"
+#include "Actor/Box.h"
+#include "Actor/Target.h"
+#include "Actor/Player.h"
 
 GameLevel::GameLevel()
 {
@@ -74,7 +77,21 @@ GameLevel::GameLevel()
         {
             actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
         }
-        
+        else if (mapChar == 'b')
+        {
+            // 박스는 움직일 수 있기 때문에, Ground도 추가
+            actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
+            actors.PushBack(new Box(Vector2(xPosition, yPosition)));
+        }
+        else if (mapChar == 't')
+        {
+            actors.PushBack(new Target(Vector2(xPosition, yPosition)));
+        }
+        else if (mapChar == 'p')
+        {
+            actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
+            actors.PushBack(new Player(Vector2(xPosition, yPosition)));
+        }
         ++xPosition;
     }
     

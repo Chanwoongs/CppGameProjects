@@ -273,7 +273,7 @@ void Engine::Clear()
 void Engine::Draw()
 {
     // 화면 지우기
-    Clear();
+    //Clear();
 
 	// 레벨 그리기
 	if (mainLevel != nullptr)
