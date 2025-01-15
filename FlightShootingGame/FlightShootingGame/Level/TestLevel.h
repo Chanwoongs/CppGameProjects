@@ -13,6 +13,8 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-private:
+    void SpawnActor(float deltaTime);
 
+private:
+    // 적 생성 함수
 };

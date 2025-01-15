@@ -32,6 +32,13 @@ void TestLevel::Update(float deltaTime)
 		Engine::Get().QuitGame();
 	}
 
+    SpawnActor(deltaTime);
+
+    //플레이어 탄약과 적의 충돌 처리
+}
+
+void TestLevel::SpawnActor(float deltaTime)
+{
     // 적 생성
     static float elapsedTime = 0.0f;
     static float spawnTime = RandomPercent(1.0f, 3.0f);

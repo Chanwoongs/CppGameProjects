@@ -39,3 +39,10 @@ void DrawableActor::SetPosition(const Vector2& newPosition)
     // 위치를 새로 옮기기
     Super::SetPosition(newPosition);
 }
+
+bool DrawableActor::Intersect(const DrawableActor& other)
+{
+    // AABB (Axis Aligned Bounding Box)
+
+    return false;
+}

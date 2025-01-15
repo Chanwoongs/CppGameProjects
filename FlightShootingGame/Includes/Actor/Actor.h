@@ -26,9 +26,9 @@ public:
     virtual void SetPosition(const Vector2& newPosition);
     inline Vector2 Position() const;
 
-    inline bool IsActive() const{ return isActive; }
+    inline bool IsActive() const { return isActive && !isExpired; }
     inline void SetActive(bool active) { isActive = active; }
-    inline void Destroy() { isExpired = true; }
+    inline void Destroy() { isExpired = true; }  
 
 protected:
     // 액터의 위치
