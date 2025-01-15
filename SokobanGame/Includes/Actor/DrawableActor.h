@@ -26,4 +26,7 @@ protected:
 
     // 너비(문자열 길이)
     int width = 0;
+
+    // 색상 값
+    Color color = Color::White;
 };

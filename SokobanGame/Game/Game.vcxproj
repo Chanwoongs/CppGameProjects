@@ -171,7 +171,15 @@ xcopy ..\Assets $(OutDir)..\Assets\ /y /e</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\Ground.cpp" />
+    <ClCompile Include="Actor\Wall.cpp" />
+    <ClCompile Include="Level\GameLevel.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor\Ground.h" />
+    <ClInclude Include="Actor\Wall.h" />
+    <ClInclude Include="Level\GameLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
