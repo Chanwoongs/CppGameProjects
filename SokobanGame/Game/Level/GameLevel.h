@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <Level/Level.h>
+#include <Math/Vector2.h>
 
 // 소코반 게임 레벨
 class DrawableActor;
@@ -15,6 +16,9 @@ public:
     GameLevel();
 
     virtual void Draw() override;
+
+    // 플레이어가 이동이 가능한 지 확인하는 함수
+    bool CanPlayerMove(const Vector2& position);
 
 private:
 

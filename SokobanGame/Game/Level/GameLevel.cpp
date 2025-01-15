@@ -25,7 +25,7 @@ GameLevel::GameLevel()
         return;
     }
 
-    // 파일 읽기
+    // 파일 읽기 (이 방법은 스테이지가 작을 때 쓸 수 있는 방법, 스테이지가 크다면 짤라서 읽는 게 좋다)
     // 끝 위치로 이동
     fseek(file, 0, SEEK_END);
 
@@ -95,6 +95,7 @@ GameLevel::GameLevel()
         {
             Target* target = new Target(Vector2(xPosition, yPosition));
             actors.PushBack(target);
+            map.PushBack(target);
             targets.PushBack(target);
         }
         else if (mapChar == 'p')
@@ -176,4 +177,34 @@ void GameLevel::Draw()
 
     // 플레이어 그리기
     player->Draw();
+}
+
+bool GameLevel::CanPlayerMove(const Vector2& position)
+{
+    // 이동하려는 위치에 벽이 있는 지 확인
+    DrawableActor* searchedActor = nullptr;
+
+    // 먼저 이동하려는 위치의 액터 찾기
+    for (auto& actor : map)
+    {
+        if (actor->Position() == position)
+        {
+            searchedActor = actor;
+            break;
+        }
+    }
+
+    // 검색한 액터가 벽인지 확인
+    if (searchedActor->As<Wall>())
+    {
+        return false;
+    }
+
+    // 검색한 액터가 이동 가능한 액터 (땅/타겟)인지 확인
+    if (searchedActor->As<Ground>() || searchedActor->As<Target>())
+    {
+        return true;
+    }
+
+    return false;
 }
