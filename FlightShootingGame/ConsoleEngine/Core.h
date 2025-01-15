@@ -13,8 +13,13 @@ enum class Color
     Red = FOREGROUND_RED,
     Green = FOREGROUND_GREEN,
     Blue = FOREGROUND_BLUE,
-    White = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE
+    White = Red | Green | Blue
 };
+
+inline void SetColor(Color color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)color);
+}
 
 // 메모리 삭제 함수
 template<typename T>
