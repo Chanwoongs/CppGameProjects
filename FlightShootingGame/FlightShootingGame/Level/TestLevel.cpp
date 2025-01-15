@@ -182,13 +182,13 @@ void TestLevel::ProcessCollisionEnemyBulletAndPlayer()
             player->Destroy();
 
             int y = Engine::Get().ScreenSize().y;
-            Engine::Get().SetCursorPosition(player->Position().x - player->Width() / 2, y - 1);
+            Engine::Get().SetCursorPosition(player->Position().x + player->Width() / 2 / 2, y - 1);
             Log(" . ");
 
-            Engine::Get().SetCursorPosition(player->Position().x - player->Width() / 2, y);
+            Engine::Get().SetCursorPosition(player->Position().x + player->Width() / 2 / 2, y);
             Log("-[.:V:.]-");
 
-            Engine::Get().SetCursorPosition(player->Position().x - player->Width() / 2, y + 1);
+            Engine::Get().SetCursorPosition(player->Position().x + player->Width() / 2 / 2, y + 1);
             Log("GameOver!\n");
 
             Sleep(2000);

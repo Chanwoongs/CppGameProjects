@@ -20,6 +20,8 @@ DrawableActor::~DrawableActor()
 
 void DrawableActor::Draw()
 {
+    if (!IsActive()) return;
+
     Super::Draw();
 
     // 그리기
