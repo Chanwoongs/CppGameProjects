@@ -2,7 +2,7 @@
 
 #include <Actor/DrawableActor.h>
 
-class EnemyBullet : DrawableActor
+class EnemyBullet : public DrawableActor
 {
     RTTI_DECLARATIONS(EnemyBullet, DrawableActor)
 

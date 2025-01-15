@@ -46,6 +46,8 @@ void Enemy::Update(float deltaTime)
     static float elapsedTime = 0.0f;
     static float fireInterval = RandomPercent(1.0f, 2.0f);
 
+    elapsedTime += deltaTime;
+
     if (elapsedTime > fireInterval)
     {
         elapsedTime = 0.0f;
@@ -53,6 +55,4 @@ void Enemy::Update(float deltaTime)
 
         Engine::Get().AddActor(new EnemyBullet(Vector2(position.x + width / 2, position.y)));
     }
-
-    elapsedTime += deltaTime;
 }

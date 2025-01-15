@@ -3,6 +3,7 @@
 #include "Actor/Player.h"
 #include "Actor/PlayerBullet.h"
 #include "Actor/Enemy.h"
+#include "Actor/EnemyBullet.h"
 
 #include "windows.h"
 
@@ -43,6 +44,8 @@ void TestLevel::Update(float deltaTime)
 
     //플레이어 탄약과 적의 충돌 처리
     ProcessCollisionPlayerBulletAndEnemy();
+
+    ProcessCollisionEnemyBulletAndPlayer();
 }
 
 void TestLevel::SpawnActor(float deltaTime)
@@ -119,6 +122,47 @@ void TestLevel::ProcessCollisionPlayerBulletAndEnemy()
                 //점수 추가
                 score += 100;
             }
+        }
+    }
+}
+
+void TestLevel::ProcessCollisionEnemyBulletAndPlayer()
+{
+    // 탄약 및 적 캐릭터 배열 선언
+    Player* player = nullptr;
+    List<EnemyBullet*> bullets;
+
+    // 레벨에 배치된 액터를 순회하면서 리스트 채우기
+    for (Actor* actor : actors)
+    {
+        // 형변환 후 확인해서 리스트 채우기
+        Player* temp = actor->As<Player>();
+        if (temp)
+        {
+            player = temp;
+            continue;
+        }
+        EnemyBullet* bullet = actor->As<EnemyBullet>();
+        if (bullet)
+        {
+            bullets.PushBack(bullet);
+            continue;
+        }
+    }
+
+    // 예외 처리
+    if (bullets.Size() == 0)
+    {
+        return;
+    }
+
+    // 두 배열을 순회하면서 충돌 처리
+    for (EnemyBullet* bullet : bullets)
+    {
+        // 충돌 처리
+        if (player->Intersect(*bullet))
+        {
+            Engine::Get().QuitGame();
         }
     }
 }
