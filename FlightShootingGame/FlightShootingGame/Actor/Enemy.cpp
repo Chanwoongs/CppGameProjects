@@ -1,6 +1,7 @@
 ﻿#include "Enemy.h"
 
 #include "Engine/Engine.h"
+#include "Actor/EnemyBullet.h"
 
 Enemy::Enemy(const char* image, int yPosition)
     : DrawableActor(image)
@@ -40,4 +41,18 @@ void Enemy::Update(float deltaTime)
         Destroy();
         return;
     }
+
+    // 탄약 발사
+    static float elapsedTime = 0.0f;
+    static float fireInterval = RandomPercent(1.0f, 2.0f);
+
+    if (elapsedTime > fireInterval)
+    {
+        elapsedTime = 0.0f;
+        fireInterval = RandomPercent(1.0f, 2.0f);
+
+        Engine::Get().AddActor(new EnemyBullet(Vector2(position.x + width / 2, position.y)));
+    }
+
+    elapsedTime += deltaTime;
 }
