@@ -19,4 +19,8 @@ private:
     
     // 플레이어 탄약과 적의 충돌 처리
     void ProcessCollisionPlayerBulletAndEnemy();
+
+private:
+    // 점수
+    int score = 0;
 };

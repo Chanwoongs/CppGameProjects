@@ -4,7 +4,7 @@
 #include "Actor/PlayerBullet.h"
 #include "Actor/Enemy.h"
 
-#include "Core.h"
+#include "windows.h"
 
 TestLevel::TestLevel()
 {
@@ -33,6 +33,12 @@ void TestLevel::Update(float deltaTime)
 		Engine::Get().QuitGame();
 	}
 
+    // 점수 출력
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
+    Engine::Get().SetCursorPosition(0, Engine::Get().ScreenSize().y + 1);
+    Log("Score: %d", score);
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     SpawnActor(deltaTime);
 
     //플레이어 탄약과 적의 충돌 처리
@@ -106,8 +112,12 @@ void TestLevel::ProcessCollisionPlayerBulletAndEnemy()
             {
                 // 충돌 했으면 적 제거
                 enemy->Destroy();
+
                 // 탄약도 제거
                 bullet->Destroy();
+
+                //점수 추가
+                score += 100;
             }
         }
     }
