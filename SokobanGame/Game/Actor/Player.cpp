@@ -1,9 +1,10 @@
 ﻿#include "Player.h"
 
 #include "Engine/Engine.h"
+#include "Level/GameLevel.h"
 
-Player::Player(const Vector2& position)
-    : DrawableActor("P")
+Player::Player(const Vector2& position, GameLevel* level)
+    : DrawableActor("P"), refLevel(level)
 {
     this->position = position;
 
@@ -22,22 +23,30 @@ void Player::Update(float deltaTime)
     // 상하좌우
     if (Engine::Get().GetKeyDown(VK_LEFT))
     {
-        position.x -= 1;
-        position.x = position.x < 0 ? 0 : position.x;
+        if (refLevel->CanPlayerMove(Vector2(position.x - 1, position.y)))
+        {
+            position.x -= 1;
+        }
     }   
     if (Engine::Get().GetKeyDown(VK_RIGHT))
     {
-        position.x += 1;
-        position.x = position.x >= Engine::Get().ScreenSize().x ? Engine::Get().ScreenSize().x : position.x;
+        if (refLevel->CanPlayerMove(Vector2(position.x + 1, position.y)))
+        {
+            position.x += 1;
+        }
     }
     if (Engine::Get().GetKeyDown(VK_UP))
     {
-        position.y -= 1;
-        position.y = position.y < 0 ? 0 : position.y;
+        if (refLevel->CanPlayerMove(Vector2(position.x, position.y - 1)))
+        {
+            position.y -= 1;
+        }
     }
     if (Engine::Get().GetKeyDown(VK_DOWN))
     {
-        position.y += 1;
-        position.y = position.y >= Engine::Get().ScreenSize().y ? Engine::Get().ScreenSize().y : position.y;
+        if (refLevel->CanPlayerMove(Vector2(position.x, position.y + 1)))
+        {
+            position.y += 1;
+        }
     }
 }

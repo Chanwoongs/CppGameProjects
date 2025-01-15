@@ -104,7 +104,7 @@ GameLevel::GameLevel()
             actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
             map.PushBack(ground);
 
-            player = new Player(Vector2(xPosition, yPosition));
+            player = new Player(Vector2(xPosition, yPosition), this);
             actors.PushBack(player);
         }
         ++xPosition;
