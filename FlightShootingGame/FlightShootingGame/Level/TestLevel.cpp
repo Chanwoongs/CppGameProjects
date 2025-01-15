@@ -32,13 +32,13 @@ void TestLevel::Update(float deltaTime)
 	{
 		Engine::Get().QuitGame();
 	}
-
+    
     // 점수 출력
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::Green);
     Engine::Get().SetCursorPosition(0, Engine::Get().ScreenSize().y + 1);
     Log("Score: %d", score);
 
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)Color::White);
     SpawnActor(deltaTime);
 
     //플레이어 탄약과 적의 충돌 처리

@@ -1,10 +1,20 @@
 ﻿#pragma once
 
-#include<iostream>
+#include <iostream>
+#include <Windows.h>
 
 #define CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+
+// 색상 열거형
+enum class Color
+{
+    Red = FOREGROUND_RED,
+    Green = FOREGROUND_GREEN,
+    Blue = FOREGROUND_BLUE,
+    White = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE
+};
 
 // 메모리 삭제 함수
 template<typename T>
