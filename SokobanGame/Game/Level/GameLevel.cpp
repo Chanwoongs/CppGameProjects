@@ -119,13 +119,53 @@ void GameLevel::Draw()
     // 맵 그리기
     for (auto& actor : map)
     {
-        actor->Draw();
+        // 플레이어 위치 확인
+        if (actor->Position() == player->Position())
+        {
+            continue;
+        }
+
+        // 박스 위치 확인
+        bool shouldDraw = true;
+        for (auto& box : boxes)
+        {
+            if (actor->Position() == box->Position())
+            {
+                shouldDraw = false;
+                break;
+            }
+        }
+
+        if (shouldDraw)
+        {
+            actor->Draw();  
+        }
     }
     
     // 타겟 그리기
     for (auto& actor : targets)
     {
-        actor->Draw();
+        // 플레이어 위치 확인
+        if (actor->Position() == player->Position())
+        {
+            continue;
+        }
+
+        // 박스 위치 확인
+        bool shouldDraw = true;
+        for (auto& box : boxes)
+        {
+            if (actor->Position() == box->Position())
+            {
+                shouldDraw = false;
+                break;
+            }
+        }
+
+        if (shouldDraw)
+        {
+            actor->Draw();
+        }
     }
 
     // 박스 그리기
