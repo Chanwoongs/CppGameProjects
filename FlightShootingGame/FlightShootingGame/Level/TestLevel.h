@@ -13,8 +13,10 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
-    void SpawnActor(float deltaTime);
-
 private:
     // 적 생성 함수
+    void SpawnActor(float deltaTime);
+    
+    // 플레이어 탄약과 적의 충돌 처리
+    void ProcessCollisionPlayerBulletAndEnemy();
 };
