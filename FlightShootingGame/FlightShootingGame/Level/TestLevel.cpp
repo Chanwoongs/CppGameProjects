@@ -80,6 +80,7 @@ void TestLevel::ProcessCollisionPlayerBulletAndEnemy()
         if (enemy)
         {
             enemies.PushBack(enemy);
+            continue;
         }
     }
 

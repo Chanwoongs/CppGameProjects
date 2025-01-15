@@ -46,7 +46,7 @@ bool DrawableActor::Intersect(const DrawableActor& other)
 
     // 내 x좌표 최소 / 최대
     int min = position.x;
-    int max = position.y;
+    int max = position.x + width;
 
     // 다른 액터의 x좌표 최소 / 최대
     int otherMin = other.position.x;

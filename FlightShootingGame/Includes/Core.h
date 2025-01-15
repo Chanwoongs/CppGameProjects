@@ -41,6 +41,12 @@ inline float RandomPercent(float min, float max)
     return random * (max - min) + min;
 }
 
+// 메모리 누수 확인할 때 사용하는 함수
+inline void CheckMemoryLeak()
+{
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+}
+
 // 디버깅 용도
 #ifdef _DEBUG
 #define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
