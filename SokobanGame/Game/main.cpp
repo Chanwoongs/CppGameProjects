@@ -37,7 +37,23 @@ int main()
 
     buffer[readSize] = '\0';
 
-    std::cout << buffer << '\n';
+    // 파일 읽을 때 사용할 인덱스
+    int index = 0;
+    
+    // 해석 (파싱-Parcing)
+    while (index < (int)bytesRead)
+    {
+        char mapChar = buffer[index++];
+
+        if (mapChar == '1')
+        {
+            std::cout << "0";
+            continue;
+        }
+        std::cout << mapChar;
+    }
+
+    //std::cout << buffer << '\n';
 
     delete[] buffer;
 }
