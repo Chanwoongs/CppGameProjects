@@ -70,27 +70,41 @@ GameLevel::GameLevel()
 
         if (mapChar == '1')
         {
-            //AddActor(new Wall(Vector2(xPosition, yPosition)));
-            actors.PushBack(new Wall(Vector2(xPosition, yPosition)));
+            Wall* wall = new Wall(Vector2(xPosition, yPosition));
+            actors.PushBack(wall);
+            map.PushBack(wall);
         }
         else if (mapChar == '.')
         {
-            actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
+            Ground* ground = new Ground(Vector2(xPosition, yPosition));
+            actors.PushBack(ground);
+            map.PushBack(ground);
         }
         else if (mapChar == 'b')
         {
             // 박스는 움직일 수 있기 때문에, Ground도 추가
-            actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
-            actors.PushBack(new Box(Vector2(xPosition, yPosition)));
+            Ground* ground = new Ground(Vector2(xPosition, yPosition));
+            actors.PushBack(ground);
+            map.PushBack(ground);
+
+            Box* box = new Box(Vector2(xPosition, yPosition));
+            actors.PushBack(box);
+            boxes.PushBack(box);
         }
         else if (mapChar == 't')
         {
-            actors.PushBack(new Target(Vector2(xPosition, yPosition)));
+            Target* target = new Target(Vector2(xPosition, yPosition));
+            actors.PushBack(target);
+            targets.PushBack(target);
         }
         else if (mapChar == 'p')
         {
+            Ground* ground = new Ground(Vector2(xPosition, yPosition));
             actors.PushBack(new Ground(Vector2(xPosition, yPosition)));
-            actors.PushBack(new Player(Vector2(xPosition, yPosition)));
+            map.PushBack(ground);
+
+            player = new Player(Vector2(xPosition, yPosition));
+            actors.PushBack(player);
         }
         ++xPosition;
     }
@@ -98,4 +112,28 @@ GameLevel::GameLevel()
     delete[] buffer;
 
     fclose(file);
+}
+
+void GameLevel::Draw()
+{
+    // 맵 그리기
+    for (auto& actor : map)
+    {
+        actor->Draw();
+    }
+    
+    // 타겟 그리기
+    for (auto& actor : targets)
+    {
+        actor->Draw();
+    }
+
+    // 박스 그리기
+    for (auto& actor : boxes)
+    {
+        actor->Draw();
+    }
+
+    // 플레이어 그리기
+    player->Draw();
 }
