@@ -30,13 +30,19 @@ void Level::Update(float deltaTime)
 }
 
 void Level::Draw()
-{	
-	// 레벨에 포함된 액터를 순회하면서 Draw 함수 호출
+{
     for (Actor* actor : actors)
     {
+        // 액터가 비활성화 상태이거나, 삭제 요청된 경우 건너뛰기.
+        if (!actor->isActive || actor->isExpired)
+        {
+            continue;
+        }
+
         actor->Draw();
     }
 }
+
 
 void Level::AddActor(Actor* newActor)
 {
