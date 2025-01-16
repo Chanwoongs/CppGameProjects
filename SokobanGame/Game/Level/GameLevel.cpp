@@ -115,6 +115,36 @@ GameLevel::GameLevel()
     fclose(file);
 }
 
+void GameLevel::Update(float deltaTime)
+{
+    Super::Update(deltaTime);
+
+    // 게임이 클리어됐으면, 게임 종료 처리
+    if (isGameClear)
+    {
+        // 대략 한 프레임 정도의 시간 대기
+        static float elapsedTime = 0.0f;
+        elapsedTime += deltaTime;
+
+        if (elapsedTime < 0.1f)
+        {
+            return;
+        }
+
+        // 커서 이동
+        Engine::Get().SetCursorPosition(0, Engine::Get().ScreenSize().y);
+
+        // 메세지 출력
+        Log("Game Clear!");
+
+        // 쓰레드 정지
+        Sleep(2000);
+
+        // 게임 종료 처리
+        Engine::Get().QuitGame();
+    }
+}
+
 void GameLevel::Draw()
 {
     // 맵 그리기

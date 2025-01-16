@@ -15,6 +15,7 @@ class GameLevel : public Level
 public:
     GameLevel();
 
+    virtual void Update(float deltaTime) override;
     virtual void Draw() override;
 
     // 플레이어가 이동이 가능한 지 확인하는 함수
