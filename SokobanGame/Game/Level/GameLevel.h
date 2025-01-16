@@ -21,6 +21,10 @@ public:
     bool CanPlayerMove(const Vector2& position);
 
 private:
+    // 박스를 옮긴 뒤 게임이 클리어되었는지 확인하는 함수
+    bool CheckGameClear();
+
+private:
 
     // 벽/땅 액터 배열
     List<DrawableActor*> map;
@@ -33,4 +37,7 @@ private:
 
     // 플레이어 액터
     Player* player = nullptr;
+
+    // 게임 클리어 변수
+    bool isGameClear = false;
 };

@@ -15,7 +15,7 @@ GameLevel::GameLevel()
     // 맵 파일 불러와 업로드
     // 파일 읽기
     FILE* file = nullptr;
-    fopen_s(&file, "../Assets/Maps/Stage1.txt", "rb");
+    fopen_s(&file, "../Assets/Maps/map.txt", "rb");
 
     // 파일 처리
     if (file == nullptr)
@@ -181,6 +181,12 @@ void GameLevel::Draw()
 
 bool GameLevel::CanPlayerMove(const Vector2& position)
 {
+    // 게임이 클리어된 경우 종료
+    if (isGameClear)
+    {
+        return false;
+    }
+
     // 박스 검색
     Box* searchedBox = nullptr;
     for (auto& box : boxes)
@@ -238,6 +244,9 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
                     // 박스 이동 처리
                     searchedBox->SetPosition(newPosition);
 
+                    // 게임 클리어 여부 확인
+                    isGameClear = CheckGameClear();
+
                     return true;
                 }
             }
@@ -270,4 +279,28 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
     }
 
     return false;
+}
+
+bool GameLevel::CheckGameClear()
+{
+    // 점수 확인을 위한 변수
+    int currentScore = 0;
+    int targetScore = targets.Size();
+
+    // 타겟 위치에 배치된 박스 개수 세기
+    for (auto& box : boxes)
+    {
+        for (auto& target : targets)
+        {
+            // 점수 확인
+            if (box->Position() == target->Position())
+            {
+                ++currentScore;
+                continue;
+            }
+        }
+    }
+    
+    // 획득한 점수가 목표 점수와 같은지 비교
+    return currentScore == targetScore;
 }
