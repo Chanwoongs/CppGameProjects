@@ -1,6 +1,7 @@
 ﻿#include "GameLevel.h"
 
 #include "Engine/Engine.h"
+#include "Engine/Timer.h"
 #include "Actor/Wall.h"
 #include "Actor/Ground.h"
 #include "Actor/Box.h"
@@ -122,11 +123,19 @@ void GameLevel::Update(float deltaTime)
     // 게임이 클리어됐으면, 게임 종료 처리
     if (isGameClear)
     {
-        // 대략 한 프레임 정도의 시간 대기
-        static float elapsedTime = 0.0f;
-        elapsedTime += deltaTime;
+        //// 대략 한 프레임 정도의 시간 대기
+        //static float elapsedTime = 0.0f;
+        //elapsedTime += deltaTime;
 
-        if (elapsedTime < 0.1f)
+        //if (elapsedTime < 0.1f)
+        //{
+        //    return;
+        //}
+
+        // 타이머
+        static Timer timer(0.1f);
+        timer.Update(deltaTime);
+        if (!timer.IsTimeOut())
         {
             return;
         }
